@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../context/AuthContextProvider';
 import { Button, TextInput } from '../../components';
 import { useNavigate } from 'react-router-dom';
@@ -15,7 +15,10 @@ export default function Login() {
   } = useContext(AuthContext);
 
   const [loginError, setLoginError] = useState('');
+  const [isMobileHover, setIsMobileHover] = useState(false);
   const navigate = useNavigate();
+
+  const toggleMobileHover = () => setIsMobileHover(!isMobileHover);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -31,9 +34,24 @@ export default function Login() {
       setErrorToastMessage('Incorrect Password');
     }
   };
+  useEffect(() => {
+    const checkScreenWidth = () => {
+      const screenWidth = window.innerWidth;
+      console.log(screenWidth < 768);
+      setIsMobileHover(screenWidth < 768);
+    };
+
+    checkScreenWidth();
+
+    window.addEventListener('resize', checkScreenWidth);
+
+    return () => {
+      window.removeEventListener('resize', checkScreenWidth);
+    };
+  }, []);
 
   return (
-    <div className='container2' aria-hidden='true'>
+    <div className={`container2 ${isMobileHover ? 'mobile-hover' : ''}`} aria-hidden='true'>
       <div className='top'></div>
       <div className='bottom'></div>
       <div className='center'>

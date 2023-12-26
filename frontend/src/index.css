@@ -241,11 +241,23 @@ textarea {
   transform-origin: -200px 50%;
   transition-delay: 0s;
 }
+
+.container2.mobile-hover .top:before,
+.container2.mobile-hover .bottom:before,
+.container2.mobile-hover .top:after,
+.container2.mobile-hover .bottom:after {
+  margin-left: 200px;
+  transform-origin: -200px 50%;
+  transition-delay: 0s;
+}
+
 .container2:hover .center,
-.container2:active .center {
+.container2:active .center,
+.container2.mobile-hover .center {
   opacity: 1;
   transition-delay: 0.2s;
 }
+
 .top:before,
 .bottom:before,
 .top:after,
@@ -284,10 +296,6 @@ textarea {
   position: absolute;
   width: 400px;
   height: 400px;
-  /* top: 50%;
-  left: 50%;
-  margin-left: -200px;
-  margin-top: -200px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -298,11 +306,6 @@ textarea {
   transition-delay: 0s;
   color: #333;
 }
-/* .center input {
-  width: 100%;
-  padding: 15px;
-  margin: 5px;
-  border-radius: 1px;
-  border: 1px solid #ccc;
-  font-family: inherit;
-} */
+
+@media (max-width: 768px) {
+}
